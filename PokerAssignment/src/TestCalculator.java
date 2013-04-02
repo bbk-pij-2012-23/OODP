@@ -4,7 +4,6 @@
 
 
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -33,6 +32,7 @@ public class TestCalculator {
 	 */
 	@Test
 	public void testCountSameValue(){
+		
 		testCal = new Calculator<Integer>();
 		int [] cardValues = {3,3,10,12,12};
 		ArrayList<Integer> expected = new ArrayList<Integer>();
@@ -41,6 +41,24 @@ public class TestCalculator {
 		ArrayList<Integer> output = testCal.sameValues(cardValues);
 		assertEquals(expected, output);
 	}
+	
+	/**
+	 * test expected input results in expected output
+	 * sameValues does not handle 3 or 4 same values well. It does id 3 and 4 (returns the value repeated
+	 * for 3 and repeated 3 times for four of a kind. Its not pretty.
+	 */
+	@Test
+	public void testSameValue3OAKind(){
+		testCal = new Calculator<Integer>();
+		int [] cardValues = {3,3,3,3,12};
+		ArrayList<Integer> expected = new ArrayList<Integer>();
+		expected.add(3);
+		expected.add(3);
+		expected.add(3);
+		ArrayList<Integer> output = testCal.sameValues(cardValues);
+		assertEquals(expected, output);
+	}
+	
 	
 	/**
 	 * test for unexpected input:
@@ -75,16 +93,30 @@ public class TestCalculator {
 	}
 	
 	/**
-	 * test for expected results
+	 * test for expected results, incl multiple consecutives
+	 *  
 	 */
 	@Test
 	public void testConsecValues(){
 		testCal = new Calculator<Integer>();
-		int [] cardValues = {3,4,6,6,8};
+		int [] cardValues = {3,4,6,6,7};
 		ArrayList<Integer> expected = new ArrayList<Integer>();
 		expected.add(3);
 		expected.add(4);
+		expected.add(6);
+		expected.add(7);
 		ArrayList<Integer> output = testCal.consecValues(cardValues);
+		assertEquals(expected,output);
+	}
+	
+	@Test
+	public void testHighValues(){
+		testCal = new Calculator<Integer>();
+		int [] cardValues = {3,4,6,12,1};
+		ArrayList<Integer> expected = new ArrayList<Integer>();
+		expected.add(12);
+		expected.add(1);
+		ArrayList<Integer> output = testCal.highValues(cardValues);
 		assertEquals(expected,output);
 	}
 	

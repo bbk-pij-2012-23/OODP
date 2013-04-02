@@ -41,7 +41,11 @@ public class Calculator<T> {
 		}
 		return pairedValues;
 	}	
-	
+	/**
+	 * 
+	 * @param values
+	 * @return consecutives
+	 */
 	public ArrayList<Integer> consecValues(int[] values){
 		ArrayList<Integer> consecutives = new ArrayList<Integer>(); 
 		Arrays.sort(values);
@@ -51,13 +55,54 @@ public class Calculator<T> {
 				if(i==1){
 					consecutives.add(values[i-1]);
 				}
+				else if (values[i-1]-values[i-2]!=1){
+					consecutives.add(values[i-1]);
+				}
 				consecutives.add(values[i]);
 			}
 			i++;
 		}
 		return consecutives;
 	}
+	
+	/**
+	 * 
+	 * @param values
+	 * @return highValues
+	 */
+	
+	public ArrayList<Integer> highValues(int[] values) {
+		ArrayList<Integer> highValues = new ArrayList<Integer>();
+		for(int value : values){
+			if(value==1){
+				highValues.add(1);
+			}
+			else{
+				if(value>=11){
+					highValues.add(value);
+				}
+			}
+		}
 		
+		return highValues;
+	}
+	
+	//to finish
+	public ArrayList<Integer> highConsecs(ArrayList<Integer> highValues){
+		if(highValues.size()>=2){
+			int[] temp = new int[5];
+			int i = 0;
+			while (i<highValues.size()){
+				temp[i] = (highValues.get(i));
+				i++;
+			}
+			consecValues(temp);
+			
+		}
+		return null;
+	}
+	
+	
 	public void print(ArrayList<T> printValues){
 		Iterator<T> it = printValues.iterator();
 		while(it.hasNext()){
@@ -73,14 +118,15 @@ public class Calculator<T> {
 	 */
 	
 	public static void main (String[] args){
-		int[] cardValues= {};
-		int[] suitValues = {2,3,3,4,1};
+		int[] cardValues= {1,2,3,4,5};
+		int[] suitValues = {2,2,2,2,2};
 		Calculator<Integer> run =  new Calculator<Integer>();
 		//ArrayList<Integer> sameValues = run.sameValues(cardValues);
-		run.print(run.sameValues(cardValues));
-		//run.print(run.sameValues(suitValues));
+		run.print(run.consecValues(cardValues));
+		run.print(run.sameValues(suitValues));
 		//ArrayList<Integer> sameSuits = run.sameValues(suitValues);
 		
 
 	}
+	
 }
