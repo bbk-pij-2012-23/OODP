@@ -10,4 +10,5 @@ package Poker;
  */
 public interface Hand {
 
+	
 }
