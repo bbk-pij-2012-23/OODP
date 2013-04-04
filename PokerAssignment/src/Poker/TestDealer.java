@@ -1,4 +1,8 @@
+package tests;
+
 import static org.junit.Assert.*;
+
+import interfaces.Deck;
 
 import java.util.ArrayList;
 
@@ -7,6 +11,8 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import classes.DeckImpl;
 
 /**
  * 
@@ -23,6 +29,9 @@ public class TestDealer {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		Deck deck = new DeckImpl();
+		
+		
 	}
 
 	/**

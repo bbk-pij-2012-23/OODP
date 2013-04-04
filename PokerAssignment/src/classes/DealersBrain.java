@@ -76,8 +76,8 @@ public class DealersBrain {
 	}
 
 	public Hand findBestHand(ArrayList<Card> hand) {
-		int[] suitArray = new int[4];
-		int[] valueArray = new int[4];
+		int[] suitArray = new int[5];
+		int[] valueArray = new int[5];
 		int i = 0;
 		Iterator<Card> it = hand.iterator();
 		while (it.hasNext()){
