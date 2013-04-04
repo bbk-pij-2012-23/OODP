@@ -2,23 +2,23 @@ package classes;
 import interfaces.Card;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class DealersBrain {
 
-	/** THIS DOES NOTHING AT THE MO
-	 * 
-	 * 
+	/**Not sure of the value of this. I could do it without it, just use a string. 
 	 * 
 	 * @author eleanormann
 	 * adapted from @author missingfaktor Mar'2010, StackOverflow (http://stackoverflow.com/questions/2497521/implementing-tostring-on-java-enums) 
 	 */
 	public enum Hand {
-		PAIR, TWOPAIR,THREEKIND,STRAIGHT,FLUSH,FOURKIND;
+		NOTHING, PAIR, TWOPAIR,THREEKIND,STRAIGHT,FLUSH,FOURKIND;
 		
 		@Override
 		public String toString(){
 			switch(this){
+				case NOTHING: return "nothing";
 				case PAIR: return "a pair"; 
 				case TWOPAIR: return "two pairs";
 				case THREEKIND: return "three of a kind";
@@ -40,44 +40,58 @@ public class DealersBrain {
 	 * @param calcSameSuits
 	 * @return hand
 	 */
-	public String bestHand(ArrayList<Integer> calcSameValues, ArrayList<Integer> calcConsecValues, ArrayList<Integer> calcSameSuits) {
-		String hand = "";
+	public Hand bestHand(ArrayList<Integer> calcSameValues, ArrayList<Integer> calcConsecValues, ArrayList<Integer> calcSameSuits) {
+		Hand hand; 
 		if(calcSameSuits.size()==4){
-			hand = "a flush";
+			hand = Hand.FLUSH;
 		}
 		else if(calcConsecValues.size()==5){
-			hand = "a straight";
+			hand = Hand.STRAIGHT;
 		}
 		else{
 			if(calcSameValues.isEmpty()){
-				hand = "nothing";
+				hand = Hand.NOTHING;
 			}
 			else if(calcSameValues.size()==1){
-				hand = "a pair";
+				hand = Hand.PAIR;
 			}
 			else if(calcSameValues.size()==2) {
 				if(calcSameValues.get(0)==calcSameValues.get(1)){
-					hand= "three of a kind";
+					hand= Hand.THREEKIND;
 				}
 				else{
-					hand= "two pairs";
+					hand= Hand.TWOPAIR;
 				}
 			}
 			else {
 				if(calcSameValues.get(0)==calcSameValues.get(1) && calcSameValues.get(0)==calcSameValues.get(2)){
-					hand = "four of a kind";
+					hand = Hand.FOURKIND;
 				}
 				else{
-					hand= "three of a kind";
+					hand= Hand.THREEKIND;
 				}
 			}
 		}
 		return hand;
 	}
 
-	public String findBestHand() {
-		// TODO Auto-generated method stub
-		return null;
+	public Hand findBestHand(ArrayList<Card> hand) {
+		int[] suitArray = new int[4];
+		int[] valueArray = new int[4];
+		int i = 0;
+		Iterator<Card> it = hand.iterator();
+		while (it.hasNext()){
+			Card temp = it.next();
+			suitArray[i]=temp.getSuit();
+			valueArray[i]=temp.getValue();
+			i++;
+		}
+		Calculator<Integer> cal = new Calculator<Integer>();
+		ArrayList<Integer> consecutiveValues = cal.consecValues(valueArray);
+		ArrayList<Integer> sameValues = cal.sameValues(valueArray);
+		ArrayList<Integer> sameSuits = cal.sameValues(suitArray);
+		Hand bestHand = bestHand(sameValues, consecutiveValues, sameSuits);
+		return bestHand;
 	}
 
 }
