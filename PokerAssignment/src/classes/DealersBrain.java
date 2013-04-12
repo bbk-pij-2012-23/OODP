@@ -2,6 +2,8 @@ package classes;
 import interfaces.Card;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 
 
@@ -92,6 +94,30 @@ public class DealersBrain {
 		ArrayList<Integer> sameSuits = cal.sameValues(suitArray);
 		Hand bestHand = bestHand(sameValues, consecutiveValues, sameSuits);
 		return bestHand;
+	}
+	
+	public ArrayList<Card> bestPotentialHand(ArrayList<Card> hand){
+		Hand bestHand = findBestHand(hand);
+		if(bestHand.compareTo(Hand.PAIR)>0){
+			if(/*check for awesome hand*/){
+					//behave appropriately
+			}
+			else{
+			//do something to extract the other cards not in the best hand
+			}	
+		}
+		else if (bestHand.compareTo(Hand.PAIR)==0){
+			//check whether a high pair
+		}
+		else if(/*check for broken conseq and no. same suits*/){
+			//behave approp
+		}
+		else{
+		 
+		}
+		ArrayList<Card> cardsToDiscard;
+		
+		return cardsToDiscard;
 	}
 
 }

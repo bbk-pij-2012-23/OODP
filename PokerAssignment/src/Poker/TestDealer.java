@@ -23,7 +23,7 @@ import classes.DeckImpl;
  *
  */
 public class TestDealer {
-	Dealer testDealer;
+	IDealer testDealer;
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -80,7 +80,7 @@ public class TestDealer {
 	
 	@Test
 	public void testIDHandsStraight() {
-		testDealer = new Dealer();
+		testDealer = new IDealer();
 		ArrayList<Integer> calcSameSuits = new ArrayList<Integer>();
 		ArrayList<Integer> calcConsecValues = new ArrayList<Integer>();
 		ArrayList<Integer> calcSameValues = new ArrayList<Integer>();
@@ -97,7 +97,7 @@ public class TestDealer {
 	
 	@Test
 	public void testIDHandsFlush() {
-		testDealer = new Dealer();
+		testDealer = new IDealer();
 		ArrayList<Integer> calcSameSuits = new ArrayList<Integer>();
 		ArrayList<Integer> calcConsecValues = new ArrayList<Integer>();
 		ArrayList<Integer> calcSameValues = new ArrayList<Integer>();
@@ -113,7 +113,7 @@ public class TestDealer {
 	
 	@Test
 	public void testIDHandsPair() {
-		testDealer = new Dealer();
+		testDealer = new IDealer();
 		ArrayList<Integer> calcSameSuits = new ArrayList<Integer>();
 		ArrayList<Integer> calcConsecValues = new ArrayList<Integer>();
 		ArrayList<Integer> calcSameValues = new ArrayList<Integer>();
@@ -126,7 +126,7 @@ public class TestDealer {
 	
 	@Test
 	public void testIDHands2Pairs() {
-		testDealer = new Dealer();
+		testDealer = new IDealer();
 		ArrayList<Integer> calcSameSuits = new ArrayList<Integer>();
 		ArrayList<Integer> calcConsecValues = new ArrayList<Integer>();
 		ArrayList<Integer> calcSameValues = new ArrayList<Integer>();
@@ -140,7 +140,7 @@ public class TestDealer {
 	
 	@Test
 	public void testIDHands3OAKind() {
-		testDealer = new Dealer();
+		testDealer = new IDealer();
 		
 		ArrayList<Integer> calcSameSuits = new ArrayList<Integer>();
 		ArrayList<Integer> calcConsecValues = new ArrayList<Integer>();
@@ -158,7 +158,7 @@ public class TestDealer {
 	 */
 	@Test
 	public void testIDHands3OAKindAlt() {
-		testDealer = new Dealer();
+		testDealer = new IDealer();
 		ArrayList<Integer> calcSameSuits = new ArrayList<Integer>();
 		ArrayList<Integer> calcConsecValues = new ArrayList<Integer>();
 		ArrayList<Integer> calcSameValues = new ArrayList<Integer>();
@@ -173,7 +173,7 @@ public class TestDealer {
 	
 	@Test
 	public void testIDHands4OAKind() {
-		testDealer = new Dealer();
+		testDealer = new IDealer();
 		ArrayList<Integer> calcSameSuits = new ArrayList<Integer>();
 		ArrayList<Integer> calcConsecValues = new ArrayList<Integer>();
 		ArrayList<Integer> calcSameValues = new ArrayList<Integer>();
@@ -188,7 +188,7 @@ public class TestDealer {
 	
 	@Test
 	public void testIDHandsNothing() {
-		testDealer = new Dealer();
+		testDealer = new IDealer();
 		ArrayList<Integer> calcSameSuits = new ArrayList<Integer>();
 		ArrayList<Integer> calcConsecValues = new ArrayList<Integer>();
 		ArrayList<Integer> calcSameValues = new ArrayList<Integer>();

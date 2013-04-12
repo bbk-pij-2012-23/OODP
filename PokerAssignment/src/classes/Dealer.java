@@ -5,33 +5,27 @@ import java.util.ArrayList;
 import classes.DealersBrain.Hand;
 
 import interfaces.Card;
-import interfaces.Dealer;
+import interfaces.IDealer;
 import interfaces.Deck;
 
-public class DealerImpl implements Dealer {
-	private final String userID = "Dealer"; //is this equivalent to Player?
+public class Dealer implements IDealer {
+	private final String userID = "Dealer";
 	private Player otherPlayer;	
 	private final Deck<Card> deck = new DeckImpl<Card>();
 	private ArrayList<Card> hand;
 
 	
-	public DealerImpl(){
-		
+	public Dealer(){
 	}
-	
-
-	
 	
 	public ArrayList<Card> getHand() {
 		return hand;
 	}
 
 
-
 	public void setHand(ArrayList<Card> hand) {
 		this.hand = hand;
 	}
-
 
 
 	public Deck<Card> getDeck() {
@@ -42,20 +36,16 @@ public class DealerImpl implements Dealer {
 
 	@Override
 	public ArrayList<Card> dealCards() {
-		
-		int dealNum = findDealNum();
 		int i = 0;
-		
 		ArrayList<Card> player1 = new ArrayList<Card>();
 		ArrayList<Card> player2 = new ArrayList<Card>();
-		while (i < dealNum){
+		while (i < 5){
 			player1.add(deck.dealCard());
 			player2.add(deck.dealCard());
 			setHand(player1);
 			otherPlayer.setHand(player2);
 			i++;
 		}
-		
 		return hand;
 	}
 
@@ -69,10 +59,10 @@ public class DealerImpl implements Dealer {
 	 * there is no point in this method
 	 */
 	@Override
-	public boolean removeCards(Card card) {
+	public boolean removeCards(String card) {
 		return hand.remove(card);
 	}
-
+	
 	@Override
 	public String determineWinner() {
 		
@@ -95,9 +85,22 @@ public class DealerImpl implements Dealer {
 	}
 
 	@Override
-	public ArrayList determineDiscard() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Card> determineDiscard() {	
+		DealersBrain think = new DealersBrain();
+		ArrayList<Card> replacementHand = think.bestPotentialHand(getHand());
+		int numCards = replacementHand.size();
+		int i = 0;
+		while(i<numCards){
+			Card card = replacementHand.get(i);
+			getHand().remove(card);
+			i++;
+		}
+		i=0;
+		while(i<numCards){
+			replacementHand.add(deck.dealCard());
+			i++;
+		}
+		return replacementHand;
 	}
 
 
@@ -106,6 +109,14 @@ public class DealerImpl implements Dealer {
 		
 		return null;
 	}
+
+	@Override
+	public void play(String otherPlayerName) {
+		otherPlayer = new Player(otherPlayerName);	
+	}
+
+	
+
 
 	
 

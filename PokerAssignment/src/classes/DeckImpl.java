@@ -6,6 +6,7 @@ import java.util.Collections;
 import interfaces.Card;
 import interfaces.Deck;
 
+
 public class DeckImpl<T> implements Deck<T> {
 	private ArrayList<Card> cards;
 	
@@ -28,7 +29,7 @@ public class DeckImpl<T> implements Deck<T> {
 	}
 		
 		
-	@Override
+	
 	public ArrayList<Card> shuffleDeck() {
 		Collections.shuffle(cards);
 		return cards;
@@ -38,15 +39,17 @@ public class DeckImpl<T> implements Deck<T> {
 	 * I can't see how I'm going to use this but I guess one can look through a deck of cards
 	 * I'll implement it when I see how it might be useful
 	 */
-	@Override
+
 	public ArrayList iterateDeck() {
 		return null;
 	}
-	
-	public Card dealCard(){
-		Card dealtCard = cards.get(0);
-		cards.remove(dealtCard);
-		return dealtCard;
+
+	@Override
+	public Card dealCard() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
+
 
 }

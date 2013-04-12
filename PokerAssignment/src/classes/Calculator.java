@@ -88,7 +88,7 @@ public class Calculator<T> {
 		return highValues;
 	}
 	
-	//to finish
+	/* not nec
 	public ArrayList<Integer> highConsecs(ArrayList<Integer> highValues){
 		if(highValues.size()>=2){
 			int[] temp = new int[5];
@@ -102,8 +102,44 @@ public class Calculator<T> {
 		}
 		return null;
 	}
+	*/
+	
+	public ArrayList<Integer> nearlyConsecValues(int[] values){
+		ArrayList<Integer> nearConsecs = new ArrayList<Integer>(); 
+		Arrays.sort(values);
+		int i = 1;
+		int diff;
+		int count=0;
+		int max=0;
+		while(i<values.length){
+			diff = values[i]-values[i-1];
+			if(diff==1 ||diff==2){
+				count++;
+			}
+			else{
+				if(max<count){
+					max=count;
+					count=0;
+				}
+				else{
+					count=0;
+				}
+			}
+			i++;
+		}
+		if (max<count){
+			max=count+1;
+		}
+		else{
+			max++;
+		}
+		System.out.println(max); //add one for the first in the list
+		
+		return nearConsecs;
+	}
 	
 	
+//	http://poker.about.com/od/cardroomscasinos/a/videopokertips.htm
 	public void print(ArrayList<T> printValues){
 		Iterator<T> it = printValues.iterator();
 		while(it.hasNext()){
@@ -119,12 +155,12 @@ public class Calculator<T> {
 	 */
 	
 	public static void main (String[] args){
-		int[] cardValues= {1,2,3,4,5};
+		int[] cardValues= {1,2,3,3,5};
 		int[] suitValues = {2,2,2,2,2};
 		Calculator<Integer> run =  new Calculator<Integer>();
 		//ArrayList<Integer> sameValues = run.sameValues(cardValues);
-		run.print(run.consecValues(cardValues));
-		run.print(run.sameValues(suitValues));
+		run.print(run.nearlyConsecValues(cardValues));
+		//run.print(run.sameValues(suitValues));
 		//ArrayList<Integer> sameSuits = run.sameValues(suitValues);
 		
 

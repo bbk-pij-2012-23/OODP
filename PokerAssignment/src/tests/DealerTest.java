@@ -28,7 +28,7 @@ public class DealerTest {
 	public void testDealCards() {
 		DeckImpl<Card> testDeck = new DeckImpl<Card>();
 		Dealer testDealer = new DealerImpl(testDeck, new Player("bob"));
-		ArrayList<Card> testHand = testDealer.dealCards();
+		ArrayList<Card> testHand = testDealer.dealCards(null);
 		assertEquals(5, testHand.size());
 	}
 
