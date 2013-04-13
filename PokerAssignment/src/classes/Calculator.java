@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 
-public class Calculator<T> {
+public class Calculator{
 
 
 
@@ -37,7 +37,13 @@ public class Calculator<T> {
 		Arrays.sort(values);
 		int i = 1;			 
 		while(i<values.length){
-			if (values[i]-values[i-1] == 0){					
+			if (values[i]-values[i-1] == 0){
+				if(i-1==0){
+					pairedValues.add(values[i-1]);
+				}
+				else if(matchCriteria(values, i-1, 0)==false){
+					pairedValues.add(values[i-1]);
+				}
 				pairedValues.add(values[i]);
 			}
 			i++;	
@@ -83,6 +89,11 @@ public class Calculator<T> {
 				match=true;
 			}
 		}
+		else if(type==0){
+			if(diff==0){
+				match=true;
+			}
+		}
 		else{
 			throw new IllegalArgumentException("that is not a valid type");
 		}
@@ -118,7 +129,7 @@ public class Calculator<T> {
 		return consecs;
 	}
 	
-	public ArrayList<Integer> nearlyConsecValues(int[] values){
+/*	public ArrayList<Integer> nearlyConsecValues(int[] values){
 		ArrayList<Integer> nearConsecs = new ArrayList<Integer>(); 
 		Arrays.sort(values);
 		int i = 1;
@@ -149,7 +160,7 @@ public class Calculator<T> {
 		return nearConsecs;
 	}
 	
-
+*/
 	
 	public ArrayList<Integer> createList(int size, Integer index, int[] values){
 		ArrayList<Integer> yourList = new ArrayList<Integer>();
@@ -165,8 +176,8 @@ public class Calculator<T> {
 	
 	
 //	http://poker.about.com/od/cardroomscasinos/a/videopokertips.htm
-	public void print(ArrayList<T> printValues){
-		Iterator<T> it = printValues.iterator();
+	public void print(ArrayList<Integer> printValues){
+		Iterator<Integer> it = printValues.iterator();
 		while(it.hasNext()){
 			System.out.println(it.next().toString());
 		}

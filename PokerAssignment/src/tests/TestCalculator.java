@@ -51,7 +51,7 @@ public class TestCalculator {
 	@Test
 	public void testNearConsecs2Runs() {
 		int[] cardValues= {10,11,3,4,7};
-		Calculator<Integer> run =  new Calculator<Integer>();
+		Calculator run =  new Calculator();
 		ArrayList<Integer> results = run.consecValues(cardValues, 2); 
 		int output = results.get(0);
 		int expected = 10;
@@ -63,11 +63,19 @@ public class TestCalculator {
 		int[] cardValues= {9,10,3,4,7};
 		int size = 2;
 		int index = 1;
-		Calculator<Integer> run =  new Calculator<Integer>();
+		Calculator run =  new Calculator();
 		ArrayList<Integer> results = run.createList(size, index, cardValues); 
 		assertEquals(2, results.size());
 	}
 
+	@Test
+	public void testSameValues(){
+		int[] cardValues= {5,9,9,4,9};
+		Calculator run =  new Calculator();
+		ArrayList<Integer> results = run.sameValues(cardValues); 
+		assertEquals(3, results.size());
+	}
+	
 	@Test
 	public void testStatus(){
 	

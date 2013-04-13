@@ -24,8 +24,8 @@ public class Nothing implements PokerHand {
 
 	@Override
 	public ArrayList<Card> discard() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return hand;
 	}
 	
 

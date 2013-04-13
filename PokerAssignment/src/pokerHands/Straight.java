@@ -19,10 +19,11 @@ public class Straight implements PokerHand {
 	public int getRank() {
 		return rank;
 	}
+	
 	@Override
 	public ArrayList<Card> discard() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Card> discards = new ArrayList<Card>();
+		return discards;
 	}
 	
 
