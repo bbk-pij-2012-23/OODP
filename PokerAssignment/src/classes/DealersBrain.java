@@ -1,19 +1,29 @@
 package classes;
 import interfaces.Card;
+import interfaces.PokerHand;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 
+import pokerHands.Flush;
+import pokerHands.FourKind;
+import pokerHands.Nothing;
+import pokerHands.Pair;
+import pokerHands.Straight;
+import pokerHands.ThreeKind;
+import pokerHands.TwoPairs;
+
+
 
 public class DealersBrain {
-
+/*
 	/**Not sure of the value of this. I could do it without it, just use a string. 
 	 * 
 	 * @author eleanormann
 	 * adapted from @author missingfaktor Mar'2010, StackOverflow (http://stackoverflow.com/questions/2497521/implementing-tostring-on-java-enums) 
-	 */
+
 	public enum Hand {
 		NOTHING, PAIR, TWOPAIR,THREEKIND,STRAIGHT,FLUSH,FOURKIND;
 		
@@ -41,12 +51,14 @@ public class DealersBrain {
 	 * @param calcConsecValues
 	 * @param calcSameSuits
 	 * @return hand
-	 */
+
 	public Hand bestHand(ArrayList<Integer> calcSameValues, ArrayList<Integer> calcConsecValues, ArrayList<Integer> calcSameSuits) {
 		Hand hand; 
-		if(calcSameSuits.size()==4){
+		if(calcSameSuits.size()==4){ 
 			hand = Hand.FLUSH;
 		}
+		
+		
 		else if(calcConsecValues.size()==5){
 			hand = Hand.STRAIGHT;
 		}
@@ -76,28 +88,82 @@ public class DealersBrain {
 		}
 		return hand;
 	}
+*/
+	public PokerHand bestHand(ArrayList<Integer> calcSameValues, ArrayList<Integer> calcConsecValues, ArrayList<Integer> calcSameSuits) {
+		PokerHand hand;
+		
+		if(calcSameSuits.size()==4){ 
+			hand = new Flush();
+		}
+		else if(calcConsecValues.size()==5){
+			hand = new Straight();
+		}
+		else{
+			if(calcSameValues.isEmpty()){
+				hand = new Nothing();
+			}
+			else if(calcSameValues.size()==1){
+				hand = new Pair();
+			}
+			else if(calcSameValues.size()==2) {
+				if(calcSameValues.get(0)==calcSameValues.get(1)){
+					hand= new ThreeKind();
+				}
+				else{
+					hand= new TwoPairs();
+				}
+			}
+			else {
+				if(calcSameValues.get(0)==calcSameValues.get(1) && calcSameValues.get(0)==calcSameValues.get(2)){
+					hand = new FourKind();
+				}
+				else{
+					hand= new ThreeKind();
+				}
+			}
+		}
+		return hand;
+	}
 
-	public Hand findBestHand(ArrayList<Card> hand) {
-		int[] suitArray = new int[5];
-		int[] valueArray = new int[5];
+	public ArrayList<Card> potentialHand(ArrayList<Card> hand){
+		int[] suits = getHandAttribute(hand, "suit");
+		int[] values = getHandAttribute(hand, "value");
+		PokerHand bestHand = findBestHand(suits,values);
+		if(bestHand.getRank()<6){
+			
+			
+		}
+		
+		return ;
+	}
+	
+	public int[] getHandAttribute(ArrayList<Card> hand, String type) {
+		int[] resultsArray = new int[5];
 		int i = 0;
 		Iterator<Card> it = hand.iterator();
 		while (it.hasNext()){
 			Card temp = it.next();
-			suitArray[i]=temp.getSuit();
-			valueArray[i]=temp.getValue();
+			if(type.equals("suit")){
+				resultsArray[i]=temp.getSuit();
+			}else if (type.equals("value")){
+				resultsArray[i]=temp.getValue();
+			}
 			i++;
 		}
+		return resultsArray; 
+	}
+		
+	public PokerHand findBestHand(int[] suitArray, int[] valueArray) {
 		Calculator<Integer> cal = new Calculator<Integer>();
-		ArrayList<Integer> consecutiveValues = cal.consecValues(valueArray);
+		ArrayList<Integer> consecutiveValues = cal.consecValues(valueArray, 1);
 		ArrayList<Integer> sameValues = cal.sameValues(valueArray);
 		ArrayList<Integer> sameSuits = cal.sameValues(suitArray);
-		Hand bestHand = bestHand(sameValues, consecutiveValues, sameSuits);
+		PokerHand bestHand = bestHand(sameValues, consecutiveValues, sameSuits);
 		return bestHand;
 	}
 	
 	public ArrayList<Card> bestPotentialHand(ArrayList<Card> hand){
-		Hand bestHand = findBestHand(hand);
+	
 		if(bestHand.compareTo(Hand.PAIR)>0){
 			if(/*check for awesome hand*/){
 					//behave appropriately

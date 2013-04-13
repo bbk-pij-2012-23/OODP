@@ -27,7 +27,8 @@ public class Calculator<T> {
 	 */	
 	
 	/**simple (ish) card matcher
-	 * uses static Arrays sort function then matches neighbours and adds card values to arraylist.   
+	 * uses static Arrays sort function then matches neighbours and adds card values to arraylist. 
+	 * this doesn't check for invalid combos - its not up to the calculator to do that  
 	 * @param values
 	 * @return pairedValues
 	 */
@@ -66,17 +67,37 @@ public class Calculator<T> {
 		return highValues;
 	}
 	
-	public ArrayList<Integer> consecValues(int[] values){
+	/*the following two methods have identical code except for this "diff==2". must be a way to 
+	 * specify a parameter or something instad 
+	 * */
+	private boolean matchCriteria(int[] values, int index, int type){
+		boolean match = false;
+		int diff=values[index]-values[index-1];
+		if(type==1){
+			if (diff==1){
+				match=true;
+			}
+		}	
+		else if(type==2){
+			if (diff==1 || diff==2){
+				match=true;
+			}
+		}
+		else{
+			throw new IllegalArgumentException("that is not a valid type");
+		}
+		return match;
+	}
+	
+	public ArrayList<Integer> consecValues(int[] values, int type){
 		ArrayList<Integer> consecs = new ArrayList<Integer>(); 
 		Arrays.sort(values);
 		int i = 1;
-		int diff;
 		int count=0;
 		int max=0;
 	
 		while(i<values.length){
-			diff = values[i]-values[i-1];
-			if(diff==1){
+			if(matchCriteria(values, i, type)==true){
 				if(count==0){ //if this is the first consecutive pair, add a count for the first num
 					count++;
 				}
@@ -142,16 +163,6 @@ public class Calculator<T> {
 	}
 	
 	
-	/*index = 4;
-	 * size=2
-	 * i=2
-	 * while index>2 add values
-	 * index=4 add(4);
-	 * index=3 add(3);
-	 * index=2 stop.
-	 * 
-	 * 
-	 * */
 	
 //	http://poker.about.com/od/cardroomscasinos/a/videopokertips.htm
 	public void print(ArrayList<T> printValues){
@@ -161,19 +172,13 @@ public class Calculator<T> {
 		}
 	}
 	
-	 /* calc then needs to id best potential hand
-	 *  which needs an additional 
-	 *  iv) mid range runs or skipped numbers
-	 *  (not sure how yet - do i-iii first
-	 * 
-	 */
 	
 	public static void main (String[] args){
 		int[] cardValues= {9,10,3,4,7};
 		int[] suitValues = {2,2,2,2,2};
 		Calculator<Integer> run =  new Calculator<Integer>();
 		//ArrayList<Integer> sameValues = run.sameValues(cardValues);
-		run.print(run.nearlyConsecValues(cardValues));
+		run.print(run.consecValues(cardValues, 2));
 		//run.print(run.sameValues(suitValues));
 		//ArrayList<Integer> sameSuits = run.sameValues(suitValues);
 		

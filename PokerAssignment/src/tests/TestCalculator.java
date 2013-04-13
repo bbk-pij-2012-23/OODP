@@ -15,7 +15,7 @@ public class TestCalculator {
 	public void testConsecs1Run(){
 		int[] cardValues= {11,11,3,4,7};
 		Calculator<Integer> run =  new Calculator<Integer>();
-		ArrayList<Integer> results = run.consecValues(cardValues); 
+		ArrayList<Integer> results = run.consecValues(cardValues, 1); 
 		int output = results.size();
 		int expected = 2;
 		assertEquals(expected, output);
@@ -23,15 +23,15 @@ public class TestCalculator {
 	
 	/**
 	 * test for multiple consecutives (select the one with higher index, therefore high value cards)
-	 * fails atm
+	 * 
 	 */
 	@Test
 	public void testConsecs2Runs(){
 		int[] cardValues= {10,11,3,4,7};
 		Calculator<Integer> run =  new Calculator<Integer>();
-		ArrayList<Integer> results = run.consecValues(cardValues); 
-		int output = results.size();
-		int expected = 2;
+		ArrayList<Integer> results = run.consecValues(cardValues, 1); 
+		int output = results.get(0);
+		int expected = 10;
 		assertEquals(expected, output);
 	}
 	
@@ -39,7 +39,7 @@ public class TestCalculator {
 	public void testNearConsecs1Run() {
 		int[] cardValues= {10,10,3,4,7};
 		Calculator<Integer> run =  new Calculator<Integer>();
-		ArrayList<Integer> results = run.nearlyConsecValues(cardValues); 
+		ArrayList<Integer> results = run.consecValues(cardValues,2); 
 		int output = results.size();
 		int expected = 2;
 		assertEquals(expected, output);
@@ -52,9 +52,9 @@ public class TestCalculator {
 	public void testNearConsecs2Runs() {
 		int[] cardValues= {10,11,3,4,7};
 		Calculator<Integer> run =  new Calculator<Integer>();
-		ArrayList<Integer> results = run.nearlyConsecValues(cardValues); 
-		int output = results.size();
-		int expected = 2;
+		ArrayList<Integer> results = run.consecValues(cardValues, 2); 
+		int output = results.get(0);
+		int expected = 10;
 		assertEquals(expected, output);
 	}
 	
