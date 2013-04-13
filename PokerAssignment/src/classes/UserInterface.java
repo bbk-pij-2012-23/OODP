@@ -71,22 +71,22 @@ public class UserInterface<T> {
 		
 		System.out.println("OK, I'll deal. You cards will show on the screen, but don't worry, I can't see them because I am behind the screen.");
 		//DealerImpl dealer = new DealerImpl(); //don't like having to pass things to dealer
-		String hand = Facade.deal(); //not sure I want the dealer to format string, its UI's job
+		String hand = dealer.deal(); //not sure I want the dealer to format string, its UI's job
 		System.out.println("You: " + hand);
 		System.out.println("Dealer: [] [] [] [] [] ");
 		System.out.println("Do you want to discard any of your cards? If so, enter the card number of each card, separated  by a space"); 
 		String str = System.console().readLine();
 		hand = parseHand(hand, str);
-		String replacements = Facade.replace();
+		String replacements = dealer.replace();
 		hand = parseHand(hand, replacements);
 		System.out.println("Your new hand is " + hand + ", " + replacements);
-		setCards(Facade.replace());
+		setCards(dealer.replace());
 		System.out.println("I am going to discard " + cards);
 		setCards(dealer.getHand());
 		System.out.println("OK, I've got " + cards + ". What have you got?");
 		String playersHand = System.console().readLine();
 		System.out.println("hmmm, highly unlikely. I'll have to check your cards...");
-		System.out.println(Facade.winner());
+		System.out.println(dealer.winner());
 		System.out.println("Play again? (hit any key to continue)");
 		System.console().readLine();
 		menu();
