@@ -4,6 +4,9 @@ import interfaces.Card;
 import interfaces.PokerHand;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import classes.Calculator;
 
 
 public class TwoPairs implements PokerHand {
@@ -24,8 +27,30 @@ public class TwoPairs implements PokerHand {
 
 	@Override
 	public ArrayList<Card> discard() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Card> discards = new ArrayList<Card>();
+		discards.addAll(hand);
+	/*	
+		
+		int[]valuesArray = new int[5];
+		int i=0;
+		while(i<hand.size()){
+			valuesArray[i]= hand.get(i).getValue();
+			i++;
+		}
+		Calculator cal = new Calculator();
+		ArrayList<Card> discards = new ArrayList<Card>();
+		discards.addAll(hand);
+		ArrayList<Integer> temp = cal.sameValues(valuesArray);
+		i=hand.size()-1;
+		
+		while(i>=0){
+			if(discards.get(i).getValue()==temp.get(0)){
+				discards.remove(i);
+			}
+			i--;
+		}
+		*/
+		return discards;
 	}
 	
 	

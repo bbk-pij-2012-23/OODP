@@ -14,7 +14,7 @@ public class TestCalculator {
 	@Test
 	public void testConsecs1Run(){
 		int[] cardValues= {11,11,3,4,7};
-		Calculator<Integer> run =  new Calculator<Integer>();
+		Calculator run =  new Calculator();
 		ArrayList<Integer> results = run.consecValues(cardValues, 1); 
 		int output = results.size();
 		int expected = 2;
@@ -28,7 +28,7 @@ public class TestCalculator {
 	@Test
 	public void testConsecs2Runs(){
 		int[] cardValues= {10,11,3,4,7};
-		Calculator<Integer> run =  new Calculator<Integer>();
+		Calculator run =  new Calculator();
 		ArrayList<Integer> results = run.consecValues(cardValues, 1); 
 		int output = results.get(0);
 		int expected = 10;
@@ -38,7 +38,7 @@ public class TestCalculator {
 	@Test
 	public void testNearConsecs1Run() {
 		int[] cardValues= {10,10,3,4,7};
-		Calculator<Integer> run =  new Calculator<Integer>();
+		Calculator run =  new Calculator();
 		ArrayList<Integer> results = run.consecValues(cardValues,2); 
 		int output = results.size();
 		int expected = 2;
@@ -70,10 +70,10 @@ public class TestCalculator {
 
 	@Test
 	public void testSameValues(){
-		int[] cardValues= {5,9,9,4,9};
+		int[] cardValues= {5,9,5,4,4};
 		Calculator run =  new Calculator();
 		ArrayList<Integer> results = run.sameValues(cardValues); 
-		assertEquals(3, results.size());
+		assertEquals(4, results.size());
 	}
 	
 	@Test

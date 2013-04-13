@@ -38,16 +38,20 @@ public class Pair implements PokerHand {
 		Calculator cal = new Calculator();
 		ArrayList<Card> discards = new ArrayList<Card>();
 		discards.addAll(hand);
-		ArrayList<Integer> temp = cal.sameValues(valuesArray);
-		i=hand.size()-1;
-		
-		while(i>=0){
-			if(discards.get(i).getValue()==temp.get(0)){
-				discards.remove(i);
+		ArrayList<Integer> pairs = cal.sameValues(valuesArray);
+		if(pairs.get(0)==1 || pairs.get(0)>=11){
+			i=hand.size()-1;
+			while(i>=0){
+				if(discards.get(i).getValue()==pairs.get(0)){
+					discards.remove(i);
+				}
+				i--;
 			}
-			i--;
+			return discards;
+		}else {
+			return discards;
 		}
-		return discards;
+		
 	}
 	
 	

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import interfaces.Card;
 import interfaces.Dealer;
 import interfaces.Deck;
+import interfaces.IDealer;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -27,8 +28,8 @@ public class DealerTest {
 	@Test
 	public void testDealCards() {
 		DeckImpl<Card> testDeck = new DeckImpl<Card>();
-		Dealer testDealer = new DealerImpl(testDeck, new Player("bob"));
-		ArrayList<Card> testHand = testDealer.dealCards(null);
+		IDealer testDealer = new Dealer(testDeck, new Player("bob"));
+		ArrayList<Card> testHand = testDealer.dealCards();
 		assertEquals(5, testHand.size());
 	}
 
@@ -39,7 +40,7 @@ public class DealerTest {
 
 	@Test
 	public void testDetermineWinner() {
-		Hand.FLUSH
+	
 		fail("Not yet implemented");
 	}
 

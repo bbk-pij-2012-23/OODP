@@ -17,6 +17,7 @@ import pokerHands.Flush;
 import pokerHands.FourKind;
 import pokerHands.Pair;
 import pokerHands.ThreeKind;
+import pokerHands.TwoPairs;
 
 public class TestPokerHand {
 	
@@ -73,7 +74,28 @@ public class TestPokerHand {
 	}
 
 	@Test
-	public void testPairDiscard(){
+	public void testHighPairDiscard(){
+		PokerHand pair = new Pair();
+		Card a = new CardImpl(1,12);
+		Card b = new CardImpl(3,7);
+		Card c = new CardImpl(2,6);
+		Card d = new CardImpl(4,12);
+		Card e = new CardImpl(3,10);
+		ArrayList<Card> testHand = new ArrayList<Card>();
+		testHand.add(a);
+		testHand.add(b);
+		testHand.add(c);
+		testHand.add(d);
+		testHand.add(e);
+		pair.setHand(testHand);
+		ArrayList<Card> discards = pair.discard();
+		int output = discards.size();
+		int expected = 3;
+		assertEquals(expected, output);
+	}
+	
+	@Test
+	public void testLowPairDiscard(){
 		PokerHand pair = new Pair();
 		Card a = new CardImpl(1,6);
 		Card b = new CardImpl(3,7);
@@ -89,7 +111,7 @@ public class TestPokerHand {
 		pair.setHand(testHand);
 		ArrayList<Card> discards = pair.discard();
 		int output = discards.size();
-		int expected = 3;
+		int expected = 5;
 		assertEquals(expected, output);
 	}
 	
@@ -113,4 +135,27 @@ public class TestPokerHand {
 		int expected = 2;
 		assertEquals(expected, output);
 	}	
+	
+	@Test
+	public void test2PairsDiscard(){
+		PokerHand twoPairs = new TwoPairs();
+		Card a = new CardImpl(1,6);
+		Card b = new CardImpl(3,7);
+		Card c = new CardImpl(2,6);
+		Card d = new CardImpl(4,12);
+		Card e = new CardImpl(3,12);
+		ArrayList<Card> testHand = new ArrayList<Card>();
+		testHand.add(a);
+		testHand.add(b);
+		testHand.add(c);
+		testHand.add(d);
+		testHand.add(e);
+		twoPairs.setHand(testHand);
+		ArrayList<Card> discards = twoPairs.discard();
+		int output = discards.size();
+		int expected = 1;
+		assertEquals(expected, output);
+	}	
+	
+	
 }
