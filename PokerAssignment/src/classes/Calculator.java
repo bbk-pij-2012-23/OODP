@@ -9,6 +9,7 @@ package classes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class Calculator<T> {
@@ -42,29 +43,6 @@ public class Calculator<T> {
 		}
 		return pairedValues;
 	}	
-	/**
-	 * 
-	 * @param values
-	 * @return consecutives
-	 */
-	public ArrayList<Integer> consecValues(int[] values){
-		ArrayList<Integer> consecutives = new ArrayList<Integer>(); 
-		Arrays.sort(values);
-		int i = 1;
-		while(i<values.length){
-			if(values[i]-values[i-1]==1){
-				if(i==1){
-					consecutives.add(values[i-1]);
-				}
-				else if (values[i-1]-values[i-2]!=1){
-					consecutives.add(values[i-1]);
-				}
-				consecutives.add(values[i]);
-			}
-			i++;
-		}
-		return consecutives;
-	}
 	
 	/**
 	 * 
@@ -88,21 +66,36 @@ public class Calculator<T> {
 		return highValues;
 	}
 	
-	/* not nec
-	public ArrayList<Integer> highConsecs(ArrayList<Integer> highValues){
-		if(highValues.size()>=2){
-			int[] temp = new int[5];
-			int i = 0;
-			while (i<highValues.size()){
-				temp[i] = (highValues.get(i));
-				i++;
+	public ArrayList<Integer> consecValues(int[] values){
+		ArrayList<Integer> consecs = new ArrayList<Integer>(); 
+		Arrays.sort(values);
+		int i = 1;
+		int diff;
+		int count=0;
+		int max=0;
+	
+		while(i<values.length){
+			diff = values[i]-values[i-1];
+			if(diff==1){
+				if(count==0){ //if this is the first consecutive pair, add a count for the first num
+					count++;
+				}
+				count++; //then add the count for the current num
+			}else{//come to the end of the run, check whether this run was bigger or same as prev run
+				if(max<=count){
+					max=count;
+					consecs = createList(max, i-1, values);	//create a list of the run
+					count=0; //reset count
+				}
 			}
-			consecValues(temp);
-			
+			i++;
 		}
-		return null;
+		if (max<=count){ //at the end of the loop, check whether the current run the reached the end
+			max=count;   //was bigger or same as a prev run, if so replace
+			consecs = createList(max, i-1, values);	
+		}
+		return consecs;
 	}
-	*/
 	
 	public ArrayList<Integer> nearlyConsecValues(int[] values){
 		ArrayList<Integer> nearConsecs = new ArrayList<Integer>(); 
@@ -111,6 +104,7 @@ public class Calculator<T> {
 		int diff;
 		int count=0;
 		int max=0;
+	
 		while(i<values.length){
 			diff = values[i]-values[i-1];
 			if(diff==1 || diff==2){
@@ -118,55 +112,32 @@ public class Calculator<T> {
 					count++;
 				}
 				count++; //then add the count for the current num
-				
-				/*if(i==values.length-1){
-					if(max==0){
-						max=count;
-						nearConsecs = createList(max, i, values);
-					}
-				}*/	
-			}else{
-				if(max<count){
+			}else{//come to the end of the run, check whether this run was bigger or same as prev run
+				if(max<=count){
 					max=count;
-					nearConsecs = createList(max, i, values);	
-					count=0;
-				}
-				else{
-					count=0;
+					nearConsecs = createList(max, i-1, values);	//create a list of the run
+					count=0; //reset count
 				}
 			}
 			i++;
 		}
-	/*	if (max<count){
-			max=count+1;
-			i=0;
-			if(!nearConsecs.isEmpty()){
-				nearConsecs.clear();
-			}
-			while (i<values.length){
-				
-				nearConsecs.add(values[i]);
-				i++;
-			}
+		if (max<=count){ //at the end of the loop, check whether the current run the reached the end
+			max=count;   //was bigger or same as a prev run, if so replace
+			nearConsecs = createList(max, i-1, values);	
 		}
-		else{
-			max++;
-		}
-		//System.out.println(max); //add one for the first in the list
-*/		
 		return nearConsecs;
 	}
 	
 
 	
-	public ArrayList<Integer> createList(int size, int index, int[] values){
+	public ArrayList<Integer> createList(int size, Integer index, int[] values){
 		ArrayList<Integer> yourList = new ArrayList<Integer>();
-		System.out.println(values[index]);
 		int i = index-size;
 		while(index>i){
 			yourList.add(values[index]);
 			index--;
 		}
+		Collections.sort(yourList);
 		return yourList;
 	}
 	
