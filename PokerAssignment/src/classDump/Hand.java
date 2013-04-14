@@ -1,4 +1,4 @@
-package Poker;
+package classDump;
 
 public class Hand {
 	

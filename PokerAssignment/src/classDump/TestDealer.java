@@ -1,4 +1,4 @@
-package tests;
+package classDump;
 
 import static org.junit.Assert.*;
 

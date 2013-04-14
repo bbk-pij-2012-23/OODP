@@ -9,17 +9,9 @@ import classes.Calculator;
 
 
 
-public class Pair implements PokerHand {
-	private ArrayList<Card> hand;
+public class Pair extends AbstractPokerHand implements PokerHand{ 
 	private final int rank = 6;
 	
-	public ArrayList<Card> getHand() {
-		return hand;
-	}
-
-	public void setHand(ArrayList<Card> hand) {
-		this.hand = hand;
-	}
 
 	public int getRank() {
 		return rank;

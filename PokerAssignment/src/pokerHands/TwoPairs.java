@@ -4,25 +4,13 @@ import interfaces.Card;
 import interfaces.PokerHand;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.regex.MatchResult;
-import java.util.regex.Matcher;
+
 
 import classes.Calculator;
 
 
-public class TwoPairs implements PokerHand {
-	private ArrayList<Card> hand;
+public class TwoPairs extends AbstractPokerHand implements PokerHand {
 	private final int rank = 5;
-
-	public ArrayList<Card> getHand() {
-		return hand;
-	}
-
-	public void setHand(ArrayList<Card> hand) {
-		this.hand = hand;
-	}
 
 	public int getRank() {
 		return rank;
@@ -58,7 +46,6 @@ public class TwoPairs implements PokerHand {
 			}
 		return discards;
 	}
-	
 	
 
 }

@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import classes.Calculator;
 
 
-public class ThreeKind implements PokerHand {
-	private ArrayList<Card> hand;
+public class ThreeKind extends AbstractPokerHand implements PokerHand {
 	private final int rank = 4;
-
-	public ArrayList<Card> getHand() {
-		return hand;
-	}
-
-	public void setHand(ArrayList<Card> hand) {
-		this.hand = hand;
-	}
 
 	public int getRank() {
 		return rank;

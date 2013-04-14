@@ -4,23 +4,14 @@ import interfaces.Card;
 import interfaces.PokerHand;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
-
-import classes.Calculator;
 
 
-public class FourKind implements PokerHand {
-	private ArrayList<Card> hand;
+
+public class FourKind extends AbstractPokerHand implements PokerHand {
 	private final int rank = 1;
 
-	public ArrayList<Card> getHand() {
-		return hand;
-	}
-
-	public void setHand(ArrayList<Card> hand) {
-		this.hand = hand;
+	public FourKind(){
+		super();
 	}
 
 	public int getRank() {

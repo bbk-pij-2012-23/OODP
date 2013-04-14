@@ -42,7 +42,7 @@ public interface IDealer {
 	 * @param card
 	 * @return true if successfully removed from hand
 	 */
-	public PokerHand removeCards(Card card);
+	public void removeCards(Card card);
 	
 	
 	public String determineWinner();

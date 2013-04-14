@@ -1,3 +1,4 @@
+package classDump;
 /*These are 'inelegant' tests, lots of repeated set up code - look into that.
  * 
  */

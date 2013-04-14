@@ -6,18 +6,10 @@ import interfaces.PokerHand;
 import java.util.ArrayList;
 
 
-public class Flush implements PokerHand{
-	private ArrayList<Card> hand;
+public class Flush extends AbstractPokerHand implements PokerHand{
 	private final int rank = 2;
 
-	public ArrayList<Card> getHand() {
-		return hand;
-	}
-
-	public void setHand(ArrayList<Card> hand) {
-		this.hand = hand;
-	}
-
+	
 	public int getRank() {
 		return rank;
 	}
@@ -27,8 +19,6 @@ public class Flush implements PokerHand{
 		ArrayList<Card> discards = new ArrayList<Card>();
 		return discards;
 	}
-	
-
 
 	
 }

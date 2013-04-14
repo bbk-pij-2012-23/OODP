@@ -157,5 +157,42 @@ public class TestPokerHand {
 		assertEquals(expected, output);
 	}	
 	
+	@Test
+	public void testToString(){
+		PokerHand flush = new Flush();
+		Card a = new CardImpl(1,6);
+		Card b = new CardImpl(1,4);
+		Card c = new CardImpl(1,12);
+		Card d = new CardImpl(1,2);
+		Card e = new CardImpl(1,7);
+		ArrayList<Card> testHand = new ArrayList<Card>();
+		testHand.add(a);
+		testHand.add(b);
+		testHand.add(c);
+		testHand.add(d);
+		testHand.add(e);
+		flush.setHand(testHand);
+		String expected = "\r1. Six of Spades\r2. Four of Spades\r3. Queen of Spades\r4. Two of Spades\r5. Seven of Spades";
+		String output = flush.toString();
+		assertEquals(expected,output);
+		
+	}
 	
+	@Test
+	public void testFourKindInheritence() {
+		PokerHand fourKind = new FourKind();
+		Card a = new CardImpl(1,6);
+		Card b = new CardImpl(3,6);
+		Card c = new CardImpl(2,6);
+		Card d = new CardImpl(4,6);
+		Card e = new CardImpl(1,7);
+		ArrayList<Card> testHand = new ArrayList<Card>();
+		testHand.add(a);
+		testHand.add(b);
+		testHand.add(c);
+		testHand.add(d);
+		testHand.add(e);
+		fourKind.setHand(testHand);
+		assertNotNull(fourKind);
+	}
 }
