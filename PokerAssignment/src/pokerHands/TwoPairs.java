@@ -4,7 +4,10 @@ import interfaces.Card;
 import interfaces.PokerHand;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.regex.MatchResult;
+import java.util.regex.Matcher;
 
 import classes.Calculator;
 
@@ -28,28 +31,31 @@ public class TwoPairs implements PokerHand {
 	@Override
 	public ArrayList<Card> discard() {
 		ArrayList<Card> discards = new ArrayList<Card>();
-		discards.addAll(hand);
-	/*	
 		
-		int[]valuesArray = new int[5];
+		int[]valuesArray = new int[hand.size()];
 		int i=0;
 		while(i<hand.size()){
 			valuesArray[i]= hand.get(i).getValue();
 			i++;
 		}
 		Calculator cal = new Calculator();
-		ArrayList<Card> discards = new ArrayList<Card>();
+		
 		discards.addAll(hand);
 		ArrayList<Integer> temp = cal.sameValues(valuesArray);
-		i=hand.size()-1;
-		
+		i=discards.size()-1;
 		while(i>=0){
 			if(discards.get(i).getValue()==temp.get(0)){
 				discards.remove(i);
 			}
 			i--;
 		}
-		*/
+		i=discards.size()-1;
+			while(i>=0){
+				if(discards.get(i).getValue()==temp.get(2)){
+					discards.remove(i);
+				}
+				i--;
+			}
 		return discards;
 	}
 	

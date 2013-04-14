@@ -29,7 +29,7 @@ public class Pair implements PokerHand {
  */
 	@Override
 	public ArrayList<Card> discard() {
-		int[]valuesArray = new int[5];
+		int[]valuesArray = new int[hand.size()];
 		int i=0;
 		while(i<hand.size()){
 			valuesArray[i]= hand.get(i).getValue();
