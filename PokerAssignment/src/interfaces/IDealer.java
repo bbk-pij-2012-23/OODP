@@ -35,18 +35,20 @@ public interface IDealer {
 	 * method to deal initial hand and extra cards as needed
 	 * returns an ArrayList of cards, data type not set - Likely to be Card object but could be String or Integer
 	 */
-	public ArrayList<?> dealCards();
+	public PokerHand dealCards();
 	
 	/**
 	 * 
 	 * @param card
 	 * @return true if successfully removed from hand
 	 */
-	public boolean removeCards(String card);
+	public PokerHand removeCards(Card card);
+	
 	
 	public String determineWinner();
 	
-	public ArrayList<?> determineDiscard();
+	
+	public ArrayList<Card> chooseCardsToReplace();
 
 	
 	

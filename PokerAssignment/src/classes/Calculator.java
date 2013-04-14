@@ -129,38 +129,7 @@ public class Calculator{
 		return consecs;
 	}
 	
-/*	public ArrayList<Integer> nearlyConsecValues(int[] values){
-		ArrayList<Integer> nearConsecs = new ArrayList<Integer>(); 
-		Arrays.sort(values);
-		int i = 1;
-		int diff;
-		int count=0;
-		int max=0;
-	
-		while(i<values.length){
-			diff = values[i]-values[i-1];
-			if(diff==1 || diff==2){
-				if(count==0){ //if this is the first consecutive pair, add a count for the first num
-					count++;
-				}
-				count++; //then add the count for the current num
-			}else{//come to the end of the run, check whether this run was bigger or same as prev run
-				if(max<=count){
-					max=count;
-					nearConsecs = createList(max, i-1, values);	//create a list of the run
-					count=0; //reset count
-				}
-			}
-			i++;
-		}
-		if (max<=count){ //at the end of the loop, check whether the current run the reached the end
-			max=count;   //was bigger or same as a prev run, if so replace
-			nearConsecs = createList(max, i-1, values);	
-		}
-		return nearConsecs;
-	}
-	
-*/
+
 	
 	public ArrayList<Integer> createList(int size, Integer index, int[] values){
 		ArrayList<Integer> yourList = new ArrayList<Integer>();
@@ -175,7 +144,7 @@ public class Calculator{
 	
 	
 	
-//	http://poker.about.com/od/cardroomscasinos/a/videopokertips.htm
+
 	public void print(ArrayList<Integer> printValues){
 		Iterator<Integer> it = printValues.iterator();
 		while(it.hasNext()){
@@ -187,7 +156,7 @@ public class Calculator{
 	public static void main (String[] args){
 		int[] cardValues= {9,10,3,4,7};
 		int[] suitValues = {2,2,2,2,2};
-		Calculator<Integer> run =  new Calculator<Integer>();
+		Calculator run =  new Calculator();
 		//ArrayList<Integer> sameValues = run.sameValues(cardValues);
 		run.print(run.consecValues(cardValues, 2));
 		//run.print(run.sameValues(suitValues));

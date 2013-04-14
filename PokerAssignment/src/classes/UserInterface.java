@@ -6,6 +6,7 @@ import interfaces.Card;
 import interfaces.IDealer;
 
 public class UserInterface<T> {
+	private IDealer dealer = new Dealer();
 	private ArrayList<?> cards;
 	private String playingAgainst;
 	
@@ -67,11 +68,9 @@ public class UserInterface<T> {
 	}
 //COUPLING WITH DEALER TO BE REMOVED
 	private void play() {
-		dealer = IDealer.newDealer();
-		
 		System.out.println("OK, I'll deal. You cards will show on the screen, but don't worry, I can't see them because I am behind the screen.");
 		//DealerImpl dealer = new DealerImpl(); //don't like having to pass things to dealer
-		String hand = dealer.deal(); //not sure I want the dealer to format string, its UI's job
+		String hand = dealer.dealCards().toString(); //not sure I want the dealer to format string, its UI's job
 		System.out.println("You: " + hand);
 		System.out.println("Dealer: [] [] [] [] [] ");
 		System.out.println("Do you want to discard any of your cards? If so, enter the card number of each card, separated  by a space"); 

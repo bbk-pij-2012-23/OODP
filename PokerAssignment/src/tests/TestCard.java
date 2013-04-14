@@ -55,5 +55,12 @@ public class TestCard {
 		assertEquals(expected,output);
 	}
 	
+	@Test
+	public void testToStringSuit() {
+		Card testCard = new CardImpl(1,1);
+		String expected = "Spades";
+		String output = SUIT_NAMES(testCard.getSuit());
+		assertEquals(expected,output);
+	}
 
 }

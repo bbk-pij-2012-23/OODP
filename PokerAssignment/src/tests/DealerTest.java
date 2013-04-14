@@ -5,17 +5,14 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import interfaces.Card;
-import interfaces.Dealer;
-import interfaces.Deck;
 import interfaces.IDealer;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import classes.DealerImpl;
-import classes.DealersBrain.Hand;
-import classes.DeckImpl;
-import classes.Player;
+import classes.Dealer;
+import classes.Deck;
+;
 
 public class DealerTest {
 	
@@ -27,8 +24,7 @@ public class DealerTest {
 
 	@Test
 	public void testDealCards() {
-		DeckImpl<Card> testDeck = new DeckImpl<Card>();
-		IDealer testDealer = new Dealer(testDeck, new Player("bob"));
+		IDealer testDealer = new Dealer(Deck.newDeck());
 		ArrayList<Card> testHand = testDealer.dealCards();
 		assertEquals(5, testHand.size());
 	}
@@ -48,5 +44,11 @@ public class DealerTest {
 	public void testDetermineDiscard() {
 		fail("Not yet implemented");
 	}
+	
+	@Test
+	public void testPotentialHand(){
+		
+	}
+	
 
 }

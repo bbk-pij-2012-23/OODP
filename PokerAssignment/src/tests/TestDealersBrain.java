@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import classDump.DealersBrain;
 import classes.CardImpl;
-import classes.DealersBrain;
 
 /**
  * @author eleanormann
@@ -42,5 +42,7 @@ public class TestDealersBrain {
 		assertEquals(expected, output);
 		
 	}
+	
+	
 
 }
